@@ -1,9 +1,6 @@
-import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import "./globals.css";
-import Header from "@/app/ui/header";
+import type { Metadata } from "next"
+import "./globals.css"
 
-const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Frontend Mentor | Frontend Quiz App",
@@ -15,10 +12,11 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+
+
   return (
     <html lang="en">
-      <body className={inter.className}>
-      <Header />
+      <body className="bg-light">
         {children}
       </body>
     </html>
