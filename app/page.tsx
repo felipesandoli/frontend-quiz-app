@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useState } from 'react'
 import Header from "@/app/ui/header"
+import Quiz from "./ui/quiz";
 
 export default function Home() {
   const [theme, setTheme] = useState("light")
@@ -24,7 +25,7 @@ export default function Home() {
   return (
     <main className={`bg-${theme}`}>
       <Header theme={theme} onChange={toggleTheme} />
-
+      <Quiz theme={theme}/>
     </main>
   );
 }

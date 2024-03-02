@@ -9,7 +9,9 @@
   --purple: rgba(167,41,245,1);
   --dark-navy: rgba(49,62,81,1);
   --light-grey: rgba(244,246,250,1);
-
+  --grey-navy: rgba(98, 108, 127, 1);
+  --light-bluish: rgba(171, 193, 225, 1);
+  --topic-icon: rgba(246, 231, 255, 1)
 }
 
 .bg-dark {
@@ -27,16 +29,67 @@
   background-color: var(--purple);
 }
 
-.heading-s-light {
-  font-size: 28px;
-  font-weight: 500;
-  letter-spacing: 0;
+.text-light {
   color: var(--dark-navy);
 }
 
-.heading-s-dark {
+.s-text-light {
+  color: var(--grey-navy);
+}
+
+.text-dark {
+  color: white;
+}
+
+.s-text-dark {
+ color: var(--light-bluish)
+}
+
+.heading-s {
   font-size: 28px;
   font-weight: 500;
   letter-spacing: 0;
-  color: white;
+}
+
+.heading-l {
+  font-size: 64px;
+  font-weight: 300;
+  letter-spacing: 0;
+  line-height: 1;
+}
+
+.heading-l-bold {
+  font-size: 64px;
+  font-weight: 500;
+  letter-spacing: 0;
+  line-height: 1;
+}
+
+.body-s {
+  font-size: 20px;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 1;
+  font-style: italic !important;
+}
+
+.topic-icon {
+  background-color: var(--topic-icon);
+  border-radius: 4px;
+}
+
+
+@media screen and (max-width:768px) {
+  .heading-l, .heading-l-bold {
+    font-size: 40px;
+  }
+
+  .heading-s {
+    font-size: 18px;
+    line-height: 3;
+  }
+
+  .body-s {
+    font-size: 14px;
+  }
 }
