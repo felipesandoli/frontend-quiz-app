@@ -7,14 +7,14 @@ export default function Header({theme, onChange}) {
     return (
         <div className='flex justify-between w-11/12 my-4 md:w-5/6 md:my-16 xl:w-4/5 xl:my-20 m-auto'>
             <div className='flex'>
-                <Image
+                {/* <Image
                     src="/icon-accessibility.svg"
                     width={40}
                     height={40}
                     alt='accessibility'
                     className='topic-icon'
                 />
-                <span className={`${rubik.className} heading-s text-${theme} ml-6`}>Accessibility</span>
+                <span className={`${rubik.className} heading-s text-${theme} ml-6`}>Accessibility</span> */}
             </div>
             <div className='flex'>
                 <Image 

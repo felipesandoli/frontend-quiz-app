@@ -11,7 +11,8 @@
   --light-grey: rgba(244,246,250,1);
   --grey-navy: rgba(98, 108, 127, 1);
   --light-bluish: rgba(171, 193, 225, 1);
-  --topic-icon: rgba(246, 231, 255, 1)
+  --topic-icon: rgba(246, 231, 255, 1);
+  --navy: rgba(59, 77, 102, 1);
 }
 
 .bg-dark {
@@ -78,6 +79,41 @@
   border-radius: 4px;
 }
 
+.btn {
+  border-radius: 24px;
+}
+
+.btn-light {
+  background-color: white;
+  border: 3px solid white;
+}
+
+.btn-dark {
+  background-color: var(--navy);
+  border: 3px solid var(--navy);
+}
+
+.btn:hover {
+  border: 3px solid var(--purple);
+}
+
+.icon-html {
+  background-color: rgba(255, 241, 233, 1);
+}
+
+.icon-css {
+  background-color: rgba(224, 253, 239, 1);
+}
+
+.icon-js {
+  background-color: rgba(235, 240, 255, 1);
+
+}
+
+.icon-accessibility {
+  background-color: rgba(246, 231, 255, 1);
+
+}
 
 @media screen and (max-width:768px) {
   .heading-l, .heading-l-bold {
