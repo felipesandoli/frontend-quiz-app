@@ -1,7 +1,20 @@
 import { rubik } from '@/app/ui/fonts'
 import Image from 'next/image'
+import { useState } from 'react'
+import quizzes from './data.json'
 
 export default function Quiz({theme}) {
+    const [topic, setTopic] = useState('')
+    const [questionNumber, setQuestionNumber] = useState(0)
+
+    const quiz = topic ? (quizzes.quizzes.filter((quiz) => quiz.title === topic)[0].questions) : ([{question: '', options: [], answer: ''}]) 
+    const { question, options, answer } = quiz[questionNumber]
+    const optionLetters = ["A", "B", "C", "D"]
+    
+    function handleTopicSelection(topic) {
+        setTopic(topic.code)
+    }
+
     const topics = [
         {
             code:'html',
@@ -21,7 +34,7 @@ export default function Quiz({theme}) {
         },
     ]
 
-    return (
+    return ( !topic ? (
         <div className="pt-16 md:pt-0 xl:grid xl:grid-cols-2 w-5/6 m-auto">
             <div>
                 <h1 className={`${rubik.className} heading-l text-${theme}`}>Welcome to the</h1>
@@ -30,7 +43,7 @@ export default function Quiz({theme}) {
             </div>
             <div className='grid gap-y-3 md:gap-y-6'>
                 {topics.map(topic => 
-                    <button className={`flex w-full p-3 xl:p-5 btn btn-${theme}`}>
+                    <button className={`flex w-full p-3 xl:p-5 btn btn-${theme}`} key={topic.code} onClick={() => handleTopicSelection(topic)}>
                         <Image
                             src={`/icon-${topic.code}.svg`}
                             width={40}
@@ -43,5 +56,24 @@ export default function Quiz({theme}) {
                 )}
             </div>
         </div>
+         ) :
+         (
+            <div className="pt-16 md:pt-0 xl:grid xl:grid-cols-2 w-5/6 m-auto">
+            <div>
+                <p className={`${rubik.className} body-s s-text-${theme} mt-4 md:mt-16`}>{`Question ${questionNumber + 1} of 10.`}</p>
+                <h1 className={`${rubik.className} heading-m text-${theme}`}>{question}</h1>
+            </div>
+            <div className='grid gap-y-3 md:gap-y-6'>
+                {options.map((option, index) => 
+                    <button className={`flex w-full p-3 xl:p-5 btn btn-${theme}`} key={index}>
+                        <div className={`option-icon`}>
+                            {optionLetters[index]}
+                        </div>
+                        <span className={`ml-4 md:ml-8 heading-s text-${theme} `}>{option}</span>
+                    </button> 
+                )}
+            </div>
+        </div>
+         )
     )
 }
