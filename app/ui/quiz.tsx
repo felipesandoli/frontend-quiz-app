@@ -51,28 +51,30 @@ export default function Quiz({theme}) {
                             alt='html'
                             className={`topic-icon icon-${topic.code}`}
                         />
-                        <span className={`ml-4 md:ml-8 heading-s text-${theme} `}>{topic.screen}</span>
+                        <span className={`ml-4 md:ml-8 heading-s text-${theme}`}>{topic.screen}</span>
                     </button>
                 )}
             </div>
         </div>
          ) :
          (
-            <div className="pt-16 md:pt-0 xl:grid xl:grid-cols-2 w-5/6 m-auto">
-            <div>
-                <p className={`${rubik.className} body-s s-text-${theme} mt-4 md:mt-16`}>{`Question ${questionNumber + 1} of 10.`}</p>
-                <h1 className={`${rubik.className} heading-m text-${theme}`}>{question}</h1>
-            </div>
-            <div className='grid gap-y-3 md:gap-y-6'>
+        <div className="pt-16 md:pt-0 xl:grid xl:grid-cols-2 w-5/6 m-auto">
+        <div>
+            <p className={`${rubik.className} body-s s-text-${theme} mt-4 md:mt-16`}>{`Question ${questionNumber + 1} of 10.`}</p>
+            <h1 className={`${rubik.className} heading-m text-${theme}`}>{question}</h1>
+        </div>
+            <ul className='grid  gap-y-3 md:gap-y-6' >
                 {options.map((option, index) => 
-                    <button className={`flex w-full p-3 xl:p-5 btn btn-${theme}`} key={index}>
-                        <div className={`option-icon`}>
-                            {optionLetters[index]}
+                    <li key={index} className={`flex w-full p-3 xl:p-5 btn btn-${theme}`}>
+                        <div className={`grid justify-items-center  relative w-10 h-10 md:w-14 md:h-14 option-icon option-icon-${theme} heading-s`}>
+                            <span className='align-middle'>
+                                {optionLetters[index]}                                
+                            </span>
                         </div>
-                        <span className={`ml-4 md:ml-8 heading-s text-${theme} `}>{option}</span>
-                    </button> 
+                        <span className={`ml-4 md:ml-8 heading-s text-${theme}`}>{option}</span>
+                    </li>
                 )}
-            </div>
+            </ul> 
         </div>
          )
     )
