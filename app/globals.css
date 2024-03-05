@@ -11,7 +11,7 @@
   --light-grey: rgba(244,246,250,1);
   --grey-navy: rgba(98, 108, 127, 1);
   --light-bluish: rgba(171, 193, 225, 1);
-  --option-icon: rgba(246, 231, 255, 1);
+  --light-pink: rgba(246, 231, 255, 1);
   --navy: rgba(59, 77, 102, 1);
 }
 
@@ -80,22 +80,36 @@
   font-style: italic !important;
 }
 
+.progress-bar {
+  border-radius: 999px;
+  height: 16px;
+}
+
+.progress-bar-light {
+  background-color: white;
+}
+
+.progress-bar-dark {
+  background-color: var(--navy);
+}
+
+.progress-bar-fill {
+  background-color: var(--purple);
+  height: 8px;
+  border-radius: 999px;
+}
+
 .option-icon {
   color: var(--grey-navy);
-}
-
-.option-icon-light {
-  background-color: var(--light-grey);
+  line-height: 56px;
+  background: var(--light-grey);
   border-radius: 4px;
 }
 
-.option-icon-dark {
-  background-color: var(--option-icon);
-  border-radius: 4px;
-}
 
 .btn {
   border-radius: 24px;
+  cursor: pointer;
 }
 
 .btn-light {
@@ -108,8 +122,18 @@
   border: 3px solid var(--navy);
 }
 
-.btn:hover {
+.btn:focus {
   border: 3px solid var(--purple);
+}
+
+.btn:focus:not(:active) .option-icon {
+  background-color: var(--purple);
+  color: white;
+}
+
+.btn:hover .option-icon {
+  background-color: var(--light-pink);
+  color: var(--purple);
 }
 
 .icon-html {
@@ -141,5 +165,9 @@
 
   .body-s {
     font-size: 14px;
+  }
+
+  .option-icon {
+    line-height: 40px;
   }
 }
