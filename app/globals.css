@@ -3,9 +3,9 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 0, 0, 0;
+  /* --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+  --background-end-rgb: 255, 255, 255; */
   --purple: rgba(167,41,245,1);
   --dark-navy: rgba(49,62,81,1);
   --light-grey: rgba(244,246,250,1);
@@ -13,6 +13,7 @@
   --light-bluish: rgba(171, 193, 225, 1);
   --light-pink: rgba(246, 231, 255, 1);
   --navy: rgba(59, 77, 102, 1);
+  --white-overlay: rgba(255,255,255,0.5) & rgba(167,41,245,1);
 }
 
 .bg-dark {
@@ -112,6 +113,17 @@
   cursor: pointer;
 }
 
+.btn-submit {
+  border-radius: 24px;
+  background-color: var(--purple);
+  color: white;
+  font-weight: 500;
+}
+
+.btn-submit:hover {
+  background-color: color-mix(in srgb, var(--purple) 100%, white 50%);
+}
+
 .btn-light {
   background-color: white;
   border: 3px solid white;
@@ -146,12 +158,14 @@
 
 .icon-js {
   background-color: rgba(235, 240, 255, 1);
-
 }
 
 .icon-accessibility {
   background-color: rgba(246, 231, 255, 1);
+}
 
+.icon-topic {
+  border-radius: 4px;
 }
 
 @media screen and (max-width:768px) {
