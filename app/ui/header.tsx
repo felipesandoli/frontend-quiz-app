@@ -2,20 +2,39 @@ import Image from 'next/image'
 import { rubik } from '@/app/ui/fonts'
 
 
-export default function Header({theme, onChange}) {
+export default function Header({theme, topic, onChange}) {
+
+    let screenTopic
+
+    switch(topic) {
+        case "html":
+            screenTopic = "HTML"
+            break
+        case "css":
+            screenTopic = "CSS"
+            break
+        case "js":
+            screenTopic = "JavaScript"
+            break
+        case "accessibility":
+            screenTopic = "Accessibility"
+            break     
+    }
 
     return (
         <div className='flex justify-between w-11/12 my-4 md:w-5/6 md:my-16 xl:w-4/5 xl:my-20 m-auto'>
+            {topic ? (
             <div className='flex'>
                 <Image
-                    src="/icon-accessibility.svg"
+                    src={`/icon-${topic}.svg`}
                     width={40}
                     height={40}
-                    alt='accessibility'
+                    alt={topic + " icon"}
                     className='topic-icon'
                 />
-                <span className={`${rubik.className} heading-s text-${theme} ml-6`}>Accessibility</span>
+                <span className={`${rubik.className} heading-s text-${theme} ml-6`}>{screenTopic}</span>
             </div>
+            ):(<div></div>)}
             <div className='flex'>
                 <Image 
                     src={`icon-sun-${theme}-theme.svg`}

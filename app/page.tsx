@@ -7,6 +7,7 @@ import Quiz from "./ui/quiz";
 
 export default function Home() {
   const [theme, setTheme] = useState("light")
+  const [topic, setTopic] = useState('')
 
   function toggleTheme(e) {
     let body = document.getElementsByTagName("body")[0]
@@ -22,10 +23,14 @@ export default function Home() {
     }
   }
 
+  function handleTopicSelection(topic:any) {
+    setTopic(topic.code)
+}
+
   return (
     <main className={`bg-${theme}`}>
-      <Header theme={theme} onChange={toggleTheme} />
-      <Quiz theme={theme}/>
+      <Header theme={theme} topic={topic} onChange={toggleTheme} />
+      <Quiz theme={theme} topic={topic} onClick={handleTopicSelection}/>
     </main>
   );
 }

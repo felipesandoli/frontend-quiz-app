@@ -3,8 +3,7 @@ import Image from 'next/image'
 import { useState } from 'react'
 import quizzes from './data.json'
 
-export default function Quiz({theme}:any) {
-    const [topic, setTopic] = useState('')
+export default function Quiz({theme,topic, onClick}:any) {
     const [questionNumber, setQuestionNumber] = useState(0)
     const [selectedAnswer, setSelectedAnswer] = useState('')
     const [score, setScore] = useState(0)
@@ -17,10 +16,6 @@ export default function Quiz({theme}:any) {
     const { question, options, answer } = quiz[questionNumber]
     const optionLetters = ["A", "B", "C", "D"]
 
-    
-    function handleTopicSelection(topic:any) {
-        setTopic(topic.code)
-    }
 
     function submitAnswer() {
         if (selectedAnswer === answer) {
@@ -81,7 +76,7 @@ export default function Quiz({theme}:any) {
             </div>
             <div className='grid gap-y-3 md:gap-y-6'>
                 {topics.map(topic => 
-                    <button className={`flex w-full p-3 xl:p-5 btn btn-${theme} `} key={topic.code} onClick={() => handleTopicSelection(topic)}>
+                    <button className={`flex w-full p-3 xl:p-5 btn btn-${theme} `} key={topic.code} onClick={() => onClick(topic)}>
                         <Image
                             src={`/icon-${topic.code}.svg`}
                             width={40}
