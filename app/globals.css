@@ -138,7 +138,7 @@
   border: 3px solid var(--purple);
 }
 
-.btn:focus:not(:active) .option-icon {
+.btn:not(active):focus .option-icon {
   background-color: var(--purple);
   color: white;
 }
