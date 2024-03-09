@@ -17,7 +17,6 @@ export default function Quiz({theme}:any) {
     const { question, options, answer } = quiz[questionNumber]
     const optionLetters = ["A", "B", "C", "D"]
 
-
     
     function handleTopicSelection(topic:any) {
         setTopic(topic.code)
@@ -44,7 +43,6 @@ export default function Quiz({theme}:any) {
     function finalizeQuiz() {
         setIsQuizCompleted(true)
         setQuestionNumber(0)
-        setTopic('')
         setSelectedAnswer('')
         setIsAnswerSubmitted(false)
     }
@@ -138,9 +136,24 @@ export default function Quiz({theme}:any) {
     }
 
     function GameOver() {
-        return <div>
-            Game Over.
-            SCORE: {score}
+        return <div className="pt-16 md:pt-0 xl:grid xl:grid-cols-2 w-5/6 m-auto">
+            <div>
+                <h1 className={`${rubik.className} heading-l text-${theme}`}>Quiz completed</h1>
+                <h2 className={`${rubik.className} heading-l-bold text-${theme}`}>You scored...</h2>
+            </div>
+            <div className=''>
+                <Image
+                    src={`/icon-${topic}.svg`}
+                    width={40}
+                    height={40}
+                    alt={topic}
+                    className='topic-icon'
+                />
+                {topic}
+                {score}
+                out of 10
+                Play Again
+            </div>
         </div>
     }
 }
