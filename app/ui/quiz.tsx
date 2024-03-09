@@ -11,7 +11,6 @@ export default function Quiz({theme}:any) {
     const [isAnswerSubmitted, setIsAnswerSubmitted] = useState(false)
     const [isQuizCompleted, setIsQuizCompleted] = useState(false)
 
-    console.log(questionNumber)
     const quiz = topic ? (quizzes.quizzes.filter((quiz) => quiz.title === topic)[0].questions) : ([{question: '', options: [], answer: ''}])
     
 
@@ -51,7 +50,6 @@ export default function Quiz({theme}:any) {
     }
 
     function handleQuizButton() {
-            // console.log(questionNumber)
             isAnswerSubmitted ? (nextQuestion()) : submitAnswer()
     }
 
@@ -107,9 +105,9 @@ export default function Quiz({theme}:any) {
                 <p className={`${rubik.className} body-s s-text-${theme} mt-4 md:mt-16`}>{`Question ${questionNumber + 1} of 10.`}</p>
                 <h1 className={`${rubik.className} heading-m text-${theme}`}>{question}</h1>
             </div>
-            <div className={`w-100 p-1 mt-6 mb-10 xl:mb-0 progress-bar progress-bar-${theme}`}>
+            <div className={`w-100 grid grid-cols-10 p-1 mt-6 mb-10 xl:mb-0 progress-bar progress-bar-${theme}`}>
                 {/* On each increment of questionNumber, progress bar goes up 10% as there are 10 questiosn in list of questions  */}
-                <div className={`w-${(questionNumber+1)*10}  progress-bar-fill`}></div>
+                <div className={`col-span-${questionNumber + 1} progress-bar-fill`}></div>
             </div>
         </div>
         <div className='grid gap-y-3 md:gap-y-6' >
