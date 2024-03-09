@@ -14,6 +14,8 @@
   --light-pink: rgba(246, 231, 255, 1);
   --navy: rgba(59, 77, 102, 1);
   --white-overlay: rgba(255,255,255,0.5) & rgba(167,41,245,1);
+  --correct-answer: rgba(38, 215, 130, 1);
+  --incorrect-answer: rgba(238, 84, 84, 1);
 }
 
 .bg-dark {
@@ -134,13 +136,24 @@
   border: 3px solid var(--navy);
 }
 
-.btn:focus {
+.selected-answer {
   border: 3px solid var(--purple);
+  border-radius: 24px;
 }
 
-.btn:not(active):focus .option-icon {
+.selected-answer .option-icon {
   background-color: var(--purple);
   color: white;
+}
+
+.correct-answer {
+  border: 3px solid var(--correct-answer);
+  border-radius: 24px;
+}
+
+.incorrect-answer {
+  border: 3px solid var(--incorrect-answer);
+  border-radius: 24px
 }
 
 .btn:hover .option-icon {
@@ -167,6 +180,49 @@
 .icon-topic {
   border-radius: 4px;
 }
+
+/* Custom widths for progress bar */
+
+.custom-w-0 {
+  width: 10%;
+}
+
+.custom-w-1 {
+  width: 20%;
+}
+
+.custom-w-2 {
+  width: 30%;
+}
+
+.custom-w-3 {
+  width: 40%;
+}
+
+.custom-w-4 {
+  width: 50%;
+}
+
+.custom-w-5 {
+  width: 60%;
+}
+
+.custom-w-6 {
+  width: 70%;
+}
+
+.custom-w-7 {
+  width: 80%;
+}
+
+.custom-w-8 {
+  width: 90%;
+}
+
+.custom-w-9 {
+  width: 100%;
+}
+
 
 @media screen and (max-width:768px) {
   .heading-l, .heading-l-bold {

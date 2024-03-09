@@ -100,24 +100,34 @@ export default function Quiz({theme}:any) {
 
     function QuizQuestions() {
         return <div className="pt-16 md:pt-0 grid grid-cols-1 xl:grid-cols-2 w-5/6 m-auto">
-        <div className='xl:w-3/4 flex flex-col justify-between'>
+        <div className='xl:w-3/4 grid grid-cols-1 justify-between'>
             <div>
                 <p className={`${rubik.className} body-s s-text-${theme} mt-4 md:mt-16`}>{`Question ${questionNumber + 1} of 10.`}</p>
                 <h1 className={`${rubik.className} heading-m text-${theme}`}>{question}</h1>
             </div>
-            <div className={`w-100 grid grid-cols-10 p-1 mt-6 mb-10 xl:mb-0 progress-bar progress-bar-${theme}`}>
+            <div className={`w-100 p-1 mt-6 mb-10 xl:mb-0 progress-bar progress-bar-${theme}`}>
                 {/* On each increment of questionNumber, progress bar goes up 10% as there are 10 questiosn in list of questions  */}
-                <div className={`col-span-${questionNumber + 1} progress-bar-fill`}></div>
+                <div className={`progress-bar-fill custom-w-${questionNumber}`}></div>
             </div>
         </div>
         <div className='grid gap-y-3 md:gap-y-6' >
             {options.map((option, index) => 
-                <button className={`flex w-full p-3 xl:p-5 btn btn-${theme}`} key={index} onClick={() => setSelectedAnswer(option)}>
-                    <div className={`grid justify-items-center w-10 h-10 md:w-14 md:h-14 option-icon heading-s`}>
-                        {optionLetters[index]}                                
-                    </div>
-                    <span className={`ml-4 md:ml-8 heading-s text-left text-${theme}`}>{option}</span>
-                </button>
+                <button
+                    className={
+                        (isAnswerSubmitted) ?
+                        ((answer === option) ? (`flex w-full p-3 xl:p-5 btn-${theme} correct-answer`) : ((option === selectedAnswer) ? (`flex w-full p-3 xl:p-5 btn-${theme} incorrect-answer`) : (`flex w-full p-3 xl:p-5 btn btn-${theme}`))) :
+                        ((`flex w-full p-3 xl:p-5 btn btn-${theme}`))
+                    }
+                    key={index}
+                    onClick={() => setSelectedAnswer(option)}>
+                <div className={`grid justify-items-center w-10 h-10 md:w-14 md:h-14 option-icon heading-s`}>
+                    {optionLetters[index]}                                
+                </div>
+                <span className={`ml-4 md:ml-8 heading-s text-left text-${theme}`}>{option}</span>
+                <span>
+                    
+                </span>
+            </button>
             )}
         </div>
         {selectedAnswer ?
