@@ -9,7 +9,7 @@ export default function Home() {
   const [theme, setTheme] = useState("light")
   const [topic, setTopic] = useState('')
 
-  function toggleTheme(e) {
+  function toggleTheme(e:any) {
     let body = document.getElementsByTagName("body")[0]
 
     if (e.target.checked) {
