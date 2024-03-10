@@ -140,6 +140,7 @@ export default function Quiz({theme,topic, onClick}:any) {
     }
 
     function AnswerButton({option, index}:any) {
+        // Answer option with no activity, this is how each answer is displayed before the user's interaction
         const selectionIdle = <button
             className={`flex w-full p-3 xl:p-5 btn btn-${theme}`}
             key={index}
@@ -150,7 +151,7 @@ export default function Quiz({theme,topic, onClick}:any) {
             <span className={`${rubik.className} ml-4 md:ml-8 m-auto heading-s text-left text-${theme}`}>{option}</span>
         </button>
 
-
+        // This is how an answer is displayed after the user has selected it
         const selectionActive = <button
             className={`flex w-full p-3 xl:p-5 selected-answer btn-${theme}`}
             key={index}
@@ -161,7 +162,7 @@ export default function Quiz({theme,topic, onClick}:any) {
             <span className={`${rubik.className} ml-4 md:ml-8 m-auto heading-s text-left text-${theme}`}>{option}</span>
         </button>
 
-
+        // Correct answer selected by the user after answer submission
         const selectionCorrect = <button
             className={`flex w-full p-3 xl:p-5 correct-answer btn-${theme}`}
             key={index}
@@ -173,6 +174,7 @@ export default function Quiz({theme,topic, onClick}:any) {
             <Image src={'icon-correct.svg'} width={30} height={30} alt='correct answer' className='m-auto mr-0'/>
         </button>
 
+        // How the correct answer is displayed after submission if user chooses the wrong answer
         const correctAnswer = <button
             className={`flex w-full p-3 xl:p-5 btn btn-${theme}`}
             key={index}
@@ -184,6 +186,7 @@ export default function Quiz({theme,topic, onClick}:any) {
             <Image src={'icon-correct.svg'} width={30} height={30} alt='correct answer' className='m-auto mr-0'/>
         </button>
 
+        // How the user chosen answer is displayed after submission if the answer is incorrect
         const selectionIncorrect = <button
             className={`flex w-full p-3 xl:p-5 incorrect-answer btn-${theme}`}
             key={index}
