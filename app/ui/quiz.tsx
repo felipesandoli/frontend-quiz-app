@@ -110,7 +110,7 @@ export default function Quiz({theme, topic, onClick}:any) {
         </div>
         <div className='grid gap-y-3 md:gap-y-6' >
             {options.map((option, index) => 
-                <AnswerButton option={option} index={index} />
+                <AnswerButton option={option} index={index} key={index}/>
             )}
         </div>
         {selectedAnswer ?
