@@ -65,7 +65,7 @@ export default function Quiz({theme,topic, onClick}:any) {
         },
     ]
 
-    return ( (!topic && !isQuizCompleted) ? ( <QuizIntro /> ) : isQuizCompleted ? (<GameOver/>) : (<QuizQuestions />))
+    return ((!topic && !isQuizCompleted) ? ( <QuizIntro /> ) : isQuizCompleted ? (<GameOver/>) : (<QuizQuestions />))
 
     function QuizIntro() {
         return <div className="pt-16 md:pt-0 xl:grid xl:grid-cols-2 w-5/6 m-auto">
@@ -84,7 +84,7 @@ export default function Quiz({theme,topic, onClick}:any) {
                             alt='html'
                             className={`icon-topic icon-${topic.code}`}
                         />
-                        <span className={`ml-4 md:ml-8 heading-s text-${theme}`}>{topic.screen}</span>
+                        <span className={`${rubik.className} ml-4 md:ml-8 heading-s text-${theme}`}>{topic.screen}</span>
                     </button>
                 )}
             </div>
@@ -105,22 +105,7 @@ export default function Quiz({theme,topic, onClick}:any) {
         </div>
         <div className='grid gap-y-3 md:gap-y-6' >
             {options.map((option, index) => 
-                <button
-                    className={
-                        (isAnswerSubmitted) ?
-                        ((answer === option) ? (`flex w-full p-3 xl:p-5 btn-${theme} correct-answer`) : ((option === selectedAnswer) ? (`flex w-full p-3 xl:p-5 btn-${theme} incorrect-answer`) : (`flex w-full p-3 xl:p-5 btn btn-${theme}`))) :
-                        ((`flex w-full p-3 xl:p-5 btn btn-${theme}`))
-                    }
-                    key={index}
-                    onClick={() => setSelectedAnswer(option)}>
-                <div className={`grid justify-items-center w-10 h-10 md:w-14 md:h-14 option-icon heading-s`}>
-                    {optionLetters[index]}                                
-                </div>
-                <span className={`ml-4 md:ml-8 heading-s text-left text-${theme}`}>{option}</span>
-                <span>
-                    
-                </span>
-            </button>
+                <AnswerButton option={option} index={index} />
             )}
         </div>
         {selectedAnswer ?
@@ -137,6 +122,7 @@ export default function Quiz({theme,topic, onClick}:any) {
                 <h2 className={`${rubik.className} heading-l-bold text-${theme}`}>You scored...</h2>
             </div>
             <div className=''>
+                <div className='flex p-8 md:p-12'>
                 <Image
                     src={`/icon-${topic}.svg`}
                     width={40}
@@ -144,11 +130,86 @@ export default function Quiz({theme,topic, onClick}:any) {
                     alt={topic}
                     className='topic-icon'
                 />
-                {topic}
-                {score}
-                out of 10
-                Play Again
+                <span className={`${rubik.className} heading-s text-${theme} ml-6`}>{topic}</span>
+                {/* {score}
+                out of 10 */}
+                </div>
+                {/* Play Again */}
             </div>
         </div>
     }
+
+    function AnswerButton({option, index}:any) {
+        const selectionIdle = <button
+            className={`flex w-full p-3 xl:p-5 btn btn-${theme}`}
+            key={index}
+            onClick={() => setSelectedAnswer(option)}>
+            <div className={`grid justify-items-center flex-none  w-10 h-10 md:w-14 md:h-14 option-icon heading-s`}>
+                {optionLetters[index]}                                
+            </div>
+            <span className={`${rubik.className} ml-4 md:ml-8 m-auto heading-s text-left text-${theme}`}>{option}</span>
+        </button>
+
+
+        const selectionActive = <button
+            className={`flex w-full p-3 xl:p-5 selected-answer btn-${theme}`}
+            key={index}
+            onClick={() => setSelectedAnswer(option)}>
+            <div className={`grid justify-items-center flex-none  w-10 h-10 md:w-14 md:h-14 option-icon option-icon-selected heading-s`}>
+                {optionLetters[index]}                                
+            </div>
+            <span className={`${rubik.className} ml-4 md:ml-8 m-auto heading-s text-left text-${theme}`}>{option}</span>
+        </button>
+
+
+        const selectionCorrect = <button
+            className={`flex w-full p-3 xl:p-5 correct-answer btn-${theme}`}
+            key={index}
+            onClick={() => setSelectedAnswer(option)}>
+            <div className={`grid justify-items-center flex-none  w-10 h-10 md:w-14 md:h-14 option-icon option-icon-correct heading-s`}>
+                {optionLetters[index]}                                
+            </div>
+            <span className={`${rubik.className} ml-4 md:ml-8 m-auto heading-s text-left text-${theme}`}>{option}</span>
+            <Image src={'icon-correct.svg'} width={30} height={30} alt='correct answer' className='m-auto mr-0'/>
+        </button>
+
+        const correctAnswer = <button
+            className={`flex w-full p-3 xl:p-5 btn btn-${theme}`}
+            key={index}
+            onClick={() => setSelectedAnswer(option)}>
+            <div className={`grid justify-items-center flex-none  w-10 h-10 md:w-14 md:h-14 option-icon heading-s`}>
+                {optionLetters[index]}                                
+            </div>
+            <span className={`${rubik.className} ml-4 md:ml-8 m-auto heading-s text-left text-${theme}`}>{option}</span>
+            <Image src={'icon-correct.svg'} width={30} height={30} alt='correct answer' className='m-auto mr-0'/>
+        </button>
+
+        const selectionIncorrect = <button
+            className={`flex w-full p-3 xl:p-5 incorrect-answer btn-${theme}`}
+            key={index}
+            onClick={() => setSelectedAnswer(option)}>
+            <div className={`grid justify-items-center flex-none  w-10 h-10 md:w-14 md:h-14 option-icon option-icon-incorrect heading-s`}>
+                {optionLetters[index]}                                
+            </div>
+            <span className={`${rubik.className} ml-4 md:ml-8 m-auto heading-s text-left text-${theme}`}>{option}</span>
+            <Image src={'icon-incorrect.svg'} width={30} height={30} alt='incorrect answer' className='m-auto mr-0'/>
+        </button>
+
+        switch(true) {
+            case (isAnswerSubmitted && option === selectedAnswer && selectedAnswer === answer):
+                return selectionCorrect
+            case (isAnswerSubmitted && option !== selectedAnswer && option === answer):
+                return correctAnswer
+            case (isAnswerSubmitted && option === selectedAnswer && selectedAnswer !== answer):
+                return selectionIncorrect
+            case (!isAnswerSubmitted && option === selectedAnswer):
+                return selectionActive
+            default:
+                return selectionIdle
+        }
+
+    }
 }
+
+
+

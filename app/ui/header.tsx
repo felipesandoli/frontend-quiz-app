@@ -32,7 +32,7 @@ export default function Header({theme, topic, onChange}) {
                     alt={topic + " icon"}
                     className='topic-icon'
                 />
-                <span className={`${rubik.className} heading-s text-${theme} ml-6`}>{screenTopic}</span>
+                <span className={`${rubik.className} m-auto heading-s text-${theme} ml-6`}>{screenTopic}</span>
             </div>
             ):(<div></div>)}
             <div className='flex'>

@@ -3,9 +3,6 @@
 @tailwind utilities;
 
 :root {
-  /* --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255; */
   --purple: rgba(167,41,245,1);
   --dark-navy: rgba(49,62,81,1);
   --light-grey: rgba(244,246,250,1);
@@ -141,8 +138,18 @@
   border-radius: 24px;
 }
 
-.selected-answer .option-icon {
+.option-icon-selected {
   background-color: var(--purple);
+  color: white;
+}
+
+.option-icon-correct {
+  background-color: var(--correct-answer);
+  color: white;
+}
+
+.option-icon-incorrect {
+  background-color: var(--incorrect-answer);
   color: white;
 }
 
