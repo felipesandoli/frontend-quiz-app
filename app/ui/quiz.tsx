@@ -3,7 +3,7 @@ import Image from 'next/image'
 import { useState } from 'react'
 import quizzes from './data.json'
 
-export default function Quiz({theme,topic, onClick}:any) {
+export default function Quiz({theme, topic, onClick}:any) {
     const [questionNumber, setQuestionNumber] = useState(0)
     const [selectedAnswer, setSelectedAnswer] = useState('')
     const [score, setScore] = useState(0)
@@ -34,7 +34,11 @@ export default function Quiz({theme,topic, onClick}:any) {
         setQuestionNumber(questionNumber+1)
         
     }
-
+    
+    function handleQuizButton() {
+        isAnswerSubmitted ? (nextQuestion()) : submitAnswer()
+    }
+    
     function finalizeQuiz() {
         setIsQuizCompleted(true)
         setQuestionNumber(0)
@@ -42,8 +46,9 @@ export default function Quiz({theme,topic, onClick}:any) {
         setIsAnswerSubmitted(false)
     }
 
-    function handleQuizButton() {
-            isAnswerSubmitted ? (nextQuestion()) : submitAnswer()
+    function playAgain() {
+        onClick('')
+        setIsQuizCompleted(false)
     }
 
     const topics = [
@@ -109,32 +114,53 @@ export default function Quiz({theme,topic, onClick}:any) {
             )}
         </div>
         {selectedAnswer ?
-            (<button className="xl:col-start-2 col-span-1 mt-3 md:mt-8 h-12 md:h-24 btn-submit heading-s" onClick={handleQuizButton}>{isAnswerSubmitted ? "Next Queston" : "Submit Answer"}</button>) :
+            (<button className={`${rubik.className} xl:col-start-2 col-span-1 mt-3 md:mt-8 h-12 md:h-24 btn-submit heading-s`} onClick={handleQuizButton}>{isAnswerSubmitted ? "Next Queston" : "Submit Answer"}</button>) :
             (<></>)
         }
     </div>
     }
 
     function GameOver() {
+        
+        let screenTopic
+        switch(topic) {
+            case ('html'):
+                screenTopic = 'HTML'
+                break
+            case ('css'):
+                screenTopic = 'CSS'
+                break
+            case ('js'):
+                screenTopic = 'JavaScript'
+                break
+            case ('accessibility'):
+                screenTopic = 'Accessibility'
+                break
+        }
+
         return <div className="pt-16 md:pt-0 xl:grid xl:grid-cols-2 w-5/6 m-auto">
             <div>
                 <h1 className={`${rubik.className} heading-l text-${theme}`}>Quiz completed</h1>
                 <h2 className={`${rubik.className} heading-l-bold text-${theme}`}>You scored...</h2>
             </div>
             <div className=''>
-                <div className='flex p-8 md:p-12'>
-                <Image
-                    src={`/icon-${topic}.svg`}
-                    width={40}
-                    height={40}
-                    alt={topic}
-                    className='topic-icon'
-                />
-                <span className={`${rubik.className} heading-s text-${theme} ml-6`}>{topic}</span>
-                {/* {score}
-                out of 10 */}
+                <div className={`grid justify-items-center p-8 md:p-12 score-${theme}`}>
+                    <div className='flex'>
+                        <Image
+                            src={`/icon-${topic}.svg`}
+                            width={40}
+                            height={40}
+                            alt={topic}
+                            className={`icon-topic icon-${topic} inline m-auto`}
+                        />
+                        <span className={`${rubik.className} heading-s text-${theme} m-auto ml-6`}>{screenTopic}</span>
+                    </div>
+                <p className={`${rubik.className} text-${theme} mt-4 mb-4 md:mt-10 text-display`}>
+                    {score}
+                </p>
+                <p className={`${rubik.className} s-text-${theme} text-lg md:text-2xl`}>out of 10</p>
                 </div>
-                {/* Play Again */}
+                <button className={`${rubik.className} mt-3 md:mt-8 w-full h-12 md:h-24 btn-submit heading-s`} onClick={playAgain}>Play Again</button>
             </div>
         </div>
     }
