@@ -2,7 +2,7 @@ import Image from 'next/image'
 import { rubik } from '@/app/ui/fonts'
 
 
-export default function Header({theme, topic, onChange}) {
+export default function Header({theme, topic, onChange}:any) {
 
     let screenTopic
 
